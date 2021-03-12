@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from ..models import Category, Smartphone
+from ..models import Category, Smartphone, Customer, Order
 
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -35,4 +35,19 @@ class SmartphoneSerializer(BaseProductSerializer, serializers.ModelSerializer):
 
     class Meta:
         model = Smartphone
+        fields = '__all__'
+
+
+class OrderSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Order
+        fields = '__all__'
+
+
+class CustomerSerializer(serializers.ModelSerializer):
+    orders = OrderSerializer(many=True)
+
+    class Meta:
+        model = Customer
         fields = '__all__'
