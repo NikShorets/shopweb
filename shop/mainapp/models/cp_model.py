@@ -4,7 +4,7 @@ from django.db import models
 
 
 class CartProduct(models.Model):
-    user = models.ForeignKey('Customer', verbose_name='Покупатель', on_delete=models.CASCADE)
+    user = models.ForeignKey('Customer', verbose_name='Покупатель', on_delete=models.CASCADE, null=True, blank=True)
     cart = models.ForeignKey('Cart', verbose_name='Карзина', on_delete=models.CASCADE, related_name='related_products')
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
     object_id = models.PositiveIntegerField()
